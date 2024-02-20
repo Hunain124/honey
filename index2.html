@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slider</title>
+<style>
+.slider {
+  width: 300px;
+  position: relative;
+  margin: 50px auto;
+}
+
+.slide {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 200px;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slide.active {
+  display: block;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btn-prev {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.btn-next {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+</style>
+</head>
+<body>
+
+<div class="slider">
+  <div class="slide active">
+    <img src="https://via.placeholder.com/300x200?text=Slide%201" alt="Slide 1">
+  </div>
+  <div class="slide">
+    <img src="https://via.placeholder.com/300x200?text=Slide%202" alt="Slide 2">
+  </div>
+  <div class="slide">
+    <img src="https://via.placeholder.com/300x200?text=Slide%203" alt="Slide 3">
+  </div>
+  
+  <div class="btn btn-prev" onclick="changeSlide(-1)">Prev</div>
+  <div class="btn btn-next" onclick="changeSlide(1)">Next</div>
+</div>
+
+<script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+
+function showSlide(n) {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (n + slides.length) % slides.length;
+  slides[currentSlide].classList.add('active');
+}
+
+function changeSlide(n) {
+  showSlide(currentSlide + n);
+}
+</script>
+
+</body>
+</html>
